@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css?family=Karma:400,500,600,700&subset=latin-ext");
+.sans-serif {
+  font-family: sans-serif !important; }
+
+.serif {
+  font-family: 'Karma', serif !important; }
+
+.container p, .container ul {
+  margin: 2.5em 0em 2.5em 0em;
+  max-width: 800px;
+  font-size: 1.25em; }
+.container p {
+  font-family: 'Karma', serif; }
+
+#iiif-banner {
+  height: 450px; }
+  #iiif-banner .leaflet-control-container {
+    display: none !important; }
+
+#iiif-viewer {
+  height: 600px; }
+
+.navbar {
+  padding: 0.5rem 0rem 0.5rem 0rem; }
+
+.nopadding {
+  padding: 0 !important; }
+
+.nomargin {
+  margin: 0 !important; }
+
+.prevnext {
+  width: '100%';
+  margin: 2rem auto; }
+
+.leaflet-container {
+  border: 1px solid grey; }
+
+.dropdown-toggle::after {
+  display: none !important; }
+
+.search-block {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem; }
+  .search-block #results .result {
+    padding: 1rem 1rem 1rem 3rem; }
+    .search-block #results .result h5 {
+      margin-top: 1rem; }
+    .search-block #results .result p {
+      margin-top: 1rem; }

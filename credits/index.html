@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- Canonical link to help search engines -->
+  <link rel="canonical" href="/wax/credits/"/>
+
+  <!-- Basic meta elements -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+  <!-- <script src="https://use.fontawesome.com/884e80fbb8.js"></script> -->
+
+  <title>
+    
+      Credits
+    
+  </title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="/wax/assets/css/style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+
+  <body>
+    <style>
+      #title a{font-size:1.5em !important;}
+      .icon {display:inline-flex;align-self:center;}
+      .icon svg, .icon img {height:1.3em;width:1.3em;}
+      .icon.baseline svg, .icon img {top:.1em;position:relative;}
+    </style>
+
+    <div class="container-fluid" style="border-bottom:1px solid grey;margin:20px 0px 20px 0px;">
+      <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center nopadding">
+          <span id="title">
+            <a href="/wax/" class="navbar-brand d-flex w-50 mr-auto" title="Home">
+              <div class="icon baseline"><img src="/wax/assets/logo.png"/></div>
+              Minicomp/Wax ✕ MIA Qatar
+            </a>
+          </span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+
+            <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+              
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About&nbsp;&nbsp;&nbsp;/
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                    <a class="dropdown-item" href="/wax/about/">Wax</a>
+                    
+                    <a class="dropdown-item" href="/wax/minicomp/">Minicomp</a>
+                    
+                    <a class="dropdown-item" href="/wax/credits/">Credits</a>
+                    
+                  </div>
+                </li>
+                
+              
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/wax/docs/">Documentation&nbsp;&nbsp;&nbsp;/</a>
+                </li>
+                
+              
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/wax/exhibits/">Exhibits&nbsp;&nbsp;&nbsp;/</a>
+                </li>
+                
+              
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/wax/collection/">Browse</a>
+                </li>
+                
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container" id="main">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet-iiif@1.2.2/leaflet-iiif.min.js"></script>
+
+<figure class="figure container-fluid nopadding">
+  <div id="iiif-banner"></div>
+  <figcaption class="figure-caption">Unknown, <a href="/wax/miaq/obj8">Page from the Shahnama</a>. 1525 - 1535 manuscript, Iran. The Museum of Islamic Art, Qatar.</figcaption>
+</figure>
+
+<script>
+    var iiif_banner;
+    var iiifLayers = {};
+    var manifestUrl = '/wax/iiif/miaq-obj8/manifest.json';
+    iiif_banner = L.map('iiif-banner', {
+      center: [-138, 144],
+      crs: L.CRS.Simple,
+      zoomDelta: 0.25,
+      zoomSnap: .25,
+      zoom: 3.5,
+      minZoom: 3.5,
+      maxZoom: 3.5
+    });
+    $.getJSON(manifestUrl, function(data) {
+      var i = 1;
+      $.each(data.sequences[0].canvases, function(_, val) {
+        var label = 'image ' + i;
+        iiifLayers[label] = L.tileLayer.iiif(val.images[0].resource.service['@id'] + '/info.json', {fitBounds: false});
+        i++;
+      });
+      if (i > 2){ L.control.layers(iiifLayers).addTo(iiif_banner);}
+      iiifLayers[Object.keys(iiifLayers)[0]].addTo(iiif_banner);
+    });
+    iiif_banner.on('zoomend', function() {
+      console.log(iiif_banner.getZoom());
+    });
+    iiif_banner.on('drag', function() {
+      console.log(iiif_banner.getCenter());
+    });
+</script>
+
+<p>Wax is a minimal computing (<a href="https://github.com/minicomp">minicomp</a>) project led by <a href="http://marii.info/">Marii Nyröp</a>. It relies on <a href="https://jekyllrb.com">Jekyll</a>, <a href="http://iiif.io">IIIF</a>, <a href="https://github.com/mejackreed/Leaflet-IIIF">Leaflet IIIF</a>, <a href="https://ruby.github.io/rake/">Rake</a>, <a href="http://elasticlunr.com/">ElasticLunr</a>, and <a href="https://github.com/cmoa/iiif_s3">IIIF_S3</a>, and builds upon work by <a href="https://github.com/pbinkley">Peter Binkley</a>, <a href="https://github.com/workergnome">David Newbury</a>, and <a href="https://github.com/elotroalex">Alex Gil</a>.</p>
+
+<p>For more about Wax’s specs, visit the <a href="/wax/docs/">documentation</a>.</p>
+
+      <div style="height:150px;"></div>
+
+    </div>
+  </body>
+</html>

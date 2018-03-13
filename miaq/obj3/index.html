@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <!-- Canonical link to help search engines -->
+  <link rel="canonical" href="/wax/miaq/obj3/"/>
+
+  <!-- Basic meta elements -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+  <!-- <script src="https://use.fontawesome.com/884e80fbb8.js"></script> -->
+
+  <title>
+    
+      Sulwan Al-Muta'a
+    
+  </title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="/wax/assets/css/style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+
+  <body>
+    <style>
+      #title a{font-size:1.5em !important;}
+      .icon {display:inline-flex;align-self:center;}
+      .icon svg, .icon img {height:1.3em;width:1.3em;}
+      .icon.baseline svg, .icon img {top:.1em;position:relative;}
+    </style>
+
+    <div class="container-fluid" style="border-bottom:1px solid grey;margin:20px 0px 20px 0px;">
+      <div class="container">
+        <nav class="navbar navbar-light navbar-expand-md bg-faded justify-content-center nopadding">
+          <span id="title">
+            <a href="/wax/" class="navbar-brand d-flex w-50 mr-auto" title="Home">
+              <div class="icon baseline"><img src="/wax/assets/logo.png"/></div>
+              Minicomp/Wax ✕ MIA Qatar
+            </a>
+          </span>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+
+            <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+              
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About&nbsp;&nbsp;&nbsp;/
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                    <a class="dropdown-item" href="/wax/about/">Wax</a>
+                    
+                    <a class="dropdown-item" href="/wax/minicomp/">Minicomp</a>
+                    
+                    <a class="dropdown-item" href="/wax/credits/">Credits</a>
+                    
+                  </div>
+                </li>
+                
+              
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/wax/docs/">Documentation&nbsp;&nbsp;&nbsp;/</a>
+                </li>
+                
+              
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/wax/exhibits/">Exhibits&nbsp;&nbsp;&nbsp;/</a>
+                </li>
+                
+              
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/wax/collection/">Browse</a>
+                </li>
+                
+              
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container" id="main">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-iiif@1.2.2/leaflet-iiif.min.js"></script>
+
+
+<figure class="figure container-fluid nopadding">
+  <div id="iiif-viewer"></div>
+</figure>
+
+<script>
+    var iiif_viewer;
+    var iiifLayers = {};
+    var manifestUrl = '/wax/iiif/miaq-obj3/manifest.json';
+    iiif_viewer = L.map('iiif-viewer', {
+      center: [0, 0],
+      crs: L.CRS.Simple,
+      zoomDelta: 0.5,
+      zoomSnap: 0,
+      zoom: 0,
+      minZoom: 0,
+      maxZoom: 2.5
+    });
+    $.getJSON(manifestUrl, function(data) {
+      var i = 1;
+      $.each(data.sequences[0].canvases, function(_, val) {
+        var label = 'image ' + i;
+        iiifLayers[label] = L.tileLayer.iiif(val.images[0].resource.service['@id'] + '/info.json', {fitBounds: true});
+        i++;
+      });
+      if (i > 2){ L.control.layers(iiifLayers).addTo(iiif_viewer);}
+      iiifLayers[Object.keys(iiifLayers)[0]].addTo(iiif_viewer);
+    });
+</script>
+
+
+  
+
+
+<div class="prevnext d-flex clearfix">
+  <div class="p-2">
+    <a href="/wax/miaq/obj2/" class="prev">
+      <button type="button" class="btn btn-outline-primary">Previous</button>
+    </a>
+  </div>
+  <div class="ml-auto p-2">
+    <a href="/wax/miaq/obj4/" class="next">
+      <button type="button" class="btn btn-outline-primary">Next</button>
+    </a>
+  </div>
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table meta table-striped">
+    <tr class='meta-row'>
+      <td class='meta-label'>Title</td>
+      <td class='meta-field'>Sulwan Al-Muta'a</td>
+    </tr>
+    <tr class='meta-row'>
+      <td class='meta-label'>Artist</td>
+      <td class='meta-field'>Unknown</td>
+    </tr>
+    <tr class='meta-row'>
+      <td class='meta-label'>Location</td>
+      <td class='meta-field'>Egypt</td>
+    </tr>
+    <tr class='meta-row'>
+      <td class='meta-label'>Date</td>
+      <td class='meta-field'>14th century</td>
+    </tr>
+    <tr class='meta-row'>
+      <td class='meta-label'>Object type</td>
+      <td class='meta-field'>manuscript</td>
+    </tr>
+    <tr class='meta-row'>
+      <td class='meta-label'>Current location</td>
+      <td class='meta-field'>The Museum of Islamic Art, Qatar</td>
+    </tr>
+    <tr class='meta-row'>
+      <td class='meta-label'>Source</td>
+      <td class='meta-field'><a href='https://commons.wikimedia.org/wiki/File:Unknown,_Egypt_or_Syria,_14th_Century_-_Sulwan_Al-Muta%27a_-_Google_Art_Project.jpg'>Wikimedia Commons</a></td>
+    </tr>
+  </table>
+</div>
+
+      <div style="height:150px;"></div>
+
+    </div>
+  </body>
+</html>
